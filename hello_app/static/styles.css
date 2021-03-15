@@ -1,6 +1,6 @@
 body {
     background-color: #CFBBDB;
-    font-family: Helvetica, sans-serif;
+    font-family: Montserrat;
     color: #E5E5E5;
 }
 
@@ -28,8 +28,8 @@ body {
 }
 
 .skill-button {
-    height: 30%;
-    width: 30%;
+    height: 25%;
+    width: 25%;
     border:none;
     font-family: inherit;
     display:inline-block;
@@ -37,7 +37,7 @@ body {
     color:inherit;
     background-color:#757289;
     cursor:pointer;
-    margin-left: 1.5%;
-    margin-right: 1.5%;
+    margin-left: 2%;
+    margin-right: 2%;
     font-size: large;
 }
