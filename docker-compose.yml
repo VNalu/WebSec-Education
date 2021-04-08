@@ -1,9 +1,13 @@
 version: "3.9"
 services:
         web:
-                build: .
+                build: WebSec-app/
                 ports:
                         - "5000:5000"
         juice-shop:
                 image: bkimminich/juice-shop
+        proxy:
+                build: Proxy-app/
+                ports:
+                        - "4000:4000"
 
