@@ -1,4 +1,3 @@
-# TODO: check volume locations supposed to be cont_name:/container/path
 version: "3.9"
 
 services:

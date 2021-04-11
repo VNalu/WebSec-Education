@@ -7,8 +7,3 @@ app = Flask(__name__)
 address = ("0.0.0.0", 5001)
 listener = Listener(address, authkey=b"aliens-are-already-here")
 connection = listener.accept()
-
-"""
-socket.socket
-s.bind()
-"""
