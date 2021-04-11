@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import request
 from requests import get
+from . import app
 
-app = Flask(__name__)
 SITE_NAME = 'http://juice-shop:3000/'
 
 @app.route('/', defaults={'path': ''})
