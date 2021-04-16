@@ -1,0 +1,22 @@
+{% extends "lessons/generic_lesson.html" %}
+{% block title %}
+Cross Site Scripting Lesson 1
+{% endblock %}
+
+{% block header %}
+    <h1>Cross Site Scripting: Lesson 1</h1>
+{% endblock %}
+
+{% block content %}
+<div id=normal-block>
+    <br>
+    Learning Objectives:
+    <ul>blah</ul>
+    <ul>blah</ul>
+</div>
+<a href="{{ url_for('xss_lab1') }}">
+    {% block lab_button %}
+        {{ super() }}
+    {% endblock %}
+</a>
+{% endblock %}

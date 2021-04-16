@@ -12,16 +12,13 @@
         </div>
 
         <div id="head">
-            <h1>WebSec Education</h1>
-            <p>Senior Project 2021</p>
+            {% block header %}{% endblock %}
         </div>
 
         <p></p>
 
-        <div class="body-content">
-            {% block content %}
-            {% endblock %}
-        </div>
+        {% block content %}
+        {% endblock %}
     </body>
 
 </html>

@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from . import app
 
 @app.route("/")
@@ -16,6 +16,10 @@ def hello_there(name = None):
         date=datetime.now()
     )
 
-@app.route("/cross-site-scripting")
-def cross_site_scripting():
-    return render_template("todo.html") # Change to cross-site-scripting when made
+@app.route("/lessons/cross-site-scripting-lesson1")
+def xss_lesson1():
+    return render_template("lessons/xss1.html")
+
+@app.route("/lessons/cross-site-scripting-lab1")
+def xss_lab1():
+    return render_template("labs/xss1.html")
