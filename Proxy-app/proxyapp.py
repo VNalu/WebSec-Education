@@ -17,12 +17,9 @@ def proxy(path):
         cookies=request.cookies,
         allow_redirects=False)
 
-    excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
+    excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection', 'x-frame-options']
     headers = [(name, value) for (name, value) in resp.raw.headers.items()
             if name.lower() not in excluded_headers]
 
     response = Response(resp.content, resp.status_code, headers)
     return response
-
-    
-# resp = Request(recv_method, f'{SITE_NAME}{path}', 
