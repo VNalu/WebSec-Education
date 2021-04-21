@@ -5,6 +5,12 @@ body {
 }
 
 /* Layout */
+#head {
+    background-color: #757289;
+    padding: 3%;
+    text-align: center;
+    color: #E5E5E5;
+}
 #dark-block {
     background-color: #757289;
     padding: 5%;
@@ -43,7 +49,7 @@ body {
     padding: 10px;
     text-align: center;
 }
-#head {
+#big-head {
     background-color: #757289;
     padding: 5%;
     text-align: center;
