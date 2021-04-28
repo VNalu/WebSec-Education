@@ -77,3 +77,11 @@ body {
     margin-right: 2%;
     font-size: large;
 }
+
+/* Lab */
+#html-block {
+    height: 50%;
+    width: 100%;
+    color: #757289;
+    background-color: azure;
+}

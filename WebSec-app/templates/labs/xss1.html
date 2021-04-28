@@ -1,4 +1,6 @@
 {% extends "labs/generic_lab.html" %}
+
+
 {% block title %}
 Cross Site Scripting Lab 1
 {% endblock %}
@@ -8,8 +10,14 @@ Cross Site Scripting Lab 1
 {% endblock %}
 
 {% block content %}
-<div id=webframe-block>
-    <iframe style="width: 48%; height: 350px; overflow: auto;" 
+
+<div id=webframe-block >
+    <iframe id="frameId" style="width: 48%; height: 350px; overflow: auto;" 
     src="http://localhost:4000/#/" title="Juice Shop"></iframe> 
 </div>
+<br>
+<div id=html-block>
+    {{html_text}}
+</div>
+
 {% endblock %}

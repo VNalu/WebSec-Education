@@ -1,5 +1,6 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, request
+import requests
 from . import app
 
 @app.route("/")
@@ -22,7 +23,9 @@ def xss_lesson1():
 
 @app.route("/lessons/cross-site-scripting-lab1")
 def xss_lab1():
-    return render_template("labs/xss1.html")
+    juiceShopUrl = "http://juice-shop:3000/"
+    html = requests.get(juiceShopUrl).text
+    return render_template("labs/xss1.html", html_text=html)
 
 @app.route('/api/v1/request/new', methods=['POST'])
 def new_request():
