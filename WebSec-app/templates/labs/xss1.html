@@ -10,14 +10,17 @@ Cross Site Scripting Lab 1
 {% endblock %}
 
 {% block content %}
+<body onLoad="window.open('http://localhost:4000/#/', '_blank');">
+
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+<span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+Please open developer tools in the Juice Shop window.
+</div>
 
 <div id=webframe-block >
     <iframe id="frameId" style="width: 48%; height: 350px; overflow: auto;" 
     src="http://localhost:4000/#/" title="Juice Shop"></iframe> 
 </div>
-<br>
-<div id=html-block>
-    {{html_text}}
-</div>
-
+</body>
 {% endblock %}
