@@ -18,9 +18,19 @@ Cross Site Scripting Lab 1
 Please open developer tools in the Juice Shop window.
 </div>
 
-<div id=webframe-block >
-    <iframe id="frameId" style="width: 48%; height: 350px; overflow: auto;" 
-    src="http://localhost:4000/#/" title="Juice Shop"></iframe> 
+<div id="top-edit-block">Packet Editor</div>
+<div id="edit-block" contenteditable="true">
+    <br>
+    {{ packet }}
 </div>
+
+<br>
+
+<div id="top-edit-block">Cookie Editor</div>
+<div id="edit-block" contenteditable="true">
+    <br>
+    {{ cookies }}
+</div>
+
 </body>
 {% endblock %}

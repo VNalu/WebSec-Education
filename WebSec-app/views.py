@@ -22,8 +22,9 @@ def xss_lesson1():
 
 @app.route("/lessons/cross-site-scripting-lab1")
 def xss_lab1():
-    # flash("Please open developer tools in the Juice Shop window.")
-    return render_template("labs/xss1.html")
+    packet_to_edit = "This is where the packet can be edited."
+    cookie_to_edit = "This is where the cookies can be edited."
+    return render_template("labs/xss1.html", packet=packet_to_edit, cookies=cookie_to_edit)
 
 @app.route('/api/v1/request/new', methods=['POST'])
 def new_request():

@@ -79,9 +79,19 @@ body {
 }
 
 /* Lab */
-#html-block {
+
+#top-edit-block {
+    height: 5%;
+    width: 90%;
+    background-color: #757289;
+    color: azure;
+    margin: auto;
+}
+
+#edit-block {
     height: 50%;
-    width: 100%;
+    width: 90%;
     color: #757289;
     background-color: azure;
+    margin: auto;
 }
