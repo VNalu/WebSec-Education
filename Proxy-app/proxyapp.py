@@ -22,4 +22,6 @@ def proxy(path):
             if name.lower() not in excluded_headers]
 
     response = Response(resp.content, resp.status_code, headers)
+    
     return response
+
