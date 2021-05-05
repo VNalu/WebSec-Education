@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, request,flash
 from . import app
+import sys
 
 @app.route("/")
 def home():
@@ -28,12 +29,21 @@ def xss_lab1():
 
 @app.route('/api/v1/request/new', methods=['POST'])
 def new_request():
-    data = request.get_json() # TODO: Parse json
-    if not validate_session(data["session_id"]):
+    print("Raw: ", request.form, file=sys.stderr)
+    data = request.form.to_dict() # TODO: Parse json
+
+    if not validate_session(data["Session ID"]):
         return {"status": "error", "error": "invalid session id"}
     
     # TODO: Add request to user queue
     return {"status": "success"}
 
-# TODO: Make UI for request
 # TODO: Figure out forward editted request for proxy 
+
+# TODO: Validate session
+def validate_session(sess_id):
+    if sess_id == "123":
+        print("Good session id", file=sys.stderr)
+        return True
+    print("Bad session id", file=sys.stderr)
+    return False
