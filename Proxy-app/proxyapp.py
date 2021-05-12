@@ -2,6 +2,7 @@ import flask
 import json
 import requests
 import base64
+import sys
 from . import app
 
 SITE_NAME = 'http://juice-shop:3000/'
@@ -27,6 +28,10 @@ def proxy(path):
 
     response = flask.Response(resp.content, resp.status_code, headers)
 
+    # Build Headers dictionary
+    headers = dict(flask.request.headers)
+    print("headers: ", headers, file=sys.stderr)
+
     # JSON to be sent to WebApp
     request_json = {
         "Session ID": 123, # TODO
@@ -34,7 +39,7 @@ def proxy(path):
         "Host": flask.request.host,
         "Path": flask.request.path,
         "HTTP version": flask.request.environ.get("SERVER_PROTOCOL"),
-        "Headers": {key: value for (key, value) in flask.request.headers},
+        "Headers": headers,
         "Query String": flask.request.query_string.decode(),
         "Body": base64.b64encode(req_data).decode()
     }
@@ -43,7 +48,7 @@ def proxy(path):
     # Make POST request to WebApp
     respToWebApp = requests.post(
         "http://web:5000/api/v1/request/new",
-        data=request_json
+        json=request_json
     )
 
     return response

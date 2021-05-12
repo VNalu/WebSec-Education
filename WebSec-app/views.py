@@ -1,7 +1,10 @@
 from datetime import datetime
-from flask import Flask, render_template, url_for, request,flash
+from flask import Flask, render_template, url_for, request,flash, jsonify
 from . import app
+from queue import Queue
 import sys
+
+requestsToEditQueue = Queue()
 
 @app.route("/")
 def home():
@@ -29,8 +32,10 @@ def xss_lab1():
 
 @app.route('/api/v1/request/new', methods=['POST'])
 def new_request():
-    print("Raw: ", request.form, file=sys.stderr)
-    data = request.form.to_dict() # TODO: Parse json
+    print("Raw: ", request.json, file=sys.stderr)
+    data = request.json
+    print("Data: ", data, file=sys.stderr)
+    requestsToEditQueue.put(data)
 
     if not validate_session(data["Session ID"]):
         return {"status": "error", "error": "invalid session id"}
@@ -38,7 +43,12 @@ def new_request():
     # TODO: Add request to user queue
     return {"status": "success"}
 
-# TODO: Figure out forward editted request for proxy 
+# TODO: Write function to put data in data structure callable by javascript
+@app.route('/api/v1/request', methods=['GET'])
+def get_request():
+    if requestsToEditQueue.empty():
+        return jsonify({"request": None})
+    return jsonify({"request": requestsToEditQueue.get()})
 
 # TODO: Validate session
 def validate_session(sess_id):
