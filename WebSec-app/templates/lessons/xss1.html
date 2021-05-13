@@ -14,7 +14,7 @@ Cross Site Scripting Lesson 1
     <ul>blah</ul>
     <ul>blah</ul>
 </div>
-<a href="{{ url_for('xss_lab1') }}">
+<a href="{{ url_for('views.xss_lab1') }}">
     {% block lab_button %}
         {{ super() }}
     {% endblock %}
