@@ -1,37 +1,27 @@
-from datetime import datetime
-from flask import Flask, render_template, url_for, request,flash, jsonify, Blueprint
+from flask import Flask, render_template, url_for, request, flash, jsonify, Blueprint
 from queue import Queue
 import sys
+from . import viewsBP
 
 requestsToEditQueue = Queue()
 
-views = Blueprint("views", __name__, template_folder="templates")
-
-@views.route("/")
+@viewsBP.route("/")
 def home():
     return render_template("index.html")
 
-# Leaving hello in as an example
-@views.route("/hello/")
-@views.route("/hello/<name>")
-def hello_there(name = None):
-    return render_template(
-        "hello_there.html",
-        name=name,
-        date=datetime.now()
-    )
+print("views is run!!", file=sys.stderr)
 
-@views.route("/lessons/cross-site-scripting-lesson1")
+@viewsBP.route("/lessons/cross-site-scripting-lesson1")
 def xss_lesson1():
     return render_template("lessons/xss1.html")
 
-@views.route("/lessons/cross-site-scripting-lab1")
+@viewsBP.route("/lessons/cross-site-scripting-lab1")
 def xss_lab1():
     packet_to_edit = "This is where the packet can be edited."
     cookie_to_edit = "This is where the cookies can be edited."
     return render_template("labs/xss1.html", packet=packet_to_edit, cookies=cookie_to_edit)
 
-@views.route('/api/v1/request/new', methods=['POST'])
+@viewsBP.route('/api/v1/request/new', methods=['POST'])
 def new_request():
     print("Raw: ", request.json, file=sys.stderr)
     data = request.json
@@ -45,7 +35,7 @@ def new_request():
     return {"status": "success"}
 
 # TODO: Write function to put data in data structure callable by javascript
-@views.route('/api/v1/request', methods=['GET'])
+@viewsBP.route('/api/v1/request', methods=['GET'])
 def get_request():
     if requestsToEditQueue.empty():
         return jsonify({"request": None})

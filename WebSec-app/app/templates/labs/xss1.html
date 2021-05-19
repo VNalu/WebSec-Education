@@ -21,7 +21,16 @@ Please open developer tools in the Juice Shop window.
 <div id="top-edit-block">Packet Editor</div>
 <div id="edit-block" contenteditable="true">
     <br>
-    {{ packet }}
+    <p id="packet"></p>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on("connect", function() {
+            socket.on('received packet', function(data) {
+                // print data
+                document.getElementById("packet").innerHTML = data;
+            });
+        });
+    </script>
 </div>
 
 <br>
