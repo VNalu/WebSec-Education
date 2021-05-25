@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, flash, jsonify, Blue
 from queue import Queue
 import sys
 from . import viewsBP
+from .. import socketio
 
 requestsToEditQueue = Queue()
 
@@ -27,6 +28,9 @@ def new_request():
     data = request.json
     print("Data: ", data, file=sys.stderr)
     requestsToEditQueue.put(data)
+
+    # DEBUG: Send data to browser
+    socketio.emit("received packet", data)
 
     if not validate_session(data["Session ID"]):
         return {"status": "error", "error": "invalid session id"}

@@ -95,3 +95,7 @@ body {
     background-color: azure;
     margin: auto;
 }
+
+#packet {
+    font-family: "Courier New", monospace;
+}

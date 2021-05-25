@@ -26,8 +26,17 @@ Please open developer tools in the Juice Shop window.
         var socket = io();
         socket.on("connect", function() {
             socket.on('received packet', function(data) {
-                // print data
-                document.getElementById("packet").innerHTML = data;
+                // Build HTTP Packet for Printing
+                dataStr = "{ Method: " + data["Method"] + ", ";
+                dataStr += "Host: " + data["Host"] + ", ";
+                dataStr += "Path: " + data["Path"] + ", ";
+                dataStr += "\"HTTP version\": " + data["HTTP version"] + ", ";
+                dataStr += "Headers: " + data["Headers"] + ", ";
+                dataStr += "\"Query String\": \"" + data["Query String"] + "\", ";
+                dataStr += "Body: \"" + data["Body"] + "\" }";
+
+                document.getElementById("packet").innerHTML = dataStr;
+                console.log("Data: ", data);
             });
         });
     </script>
